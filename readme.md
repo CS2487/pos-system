@@ -1,62 +1,172 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+1️⃣ الأساسيات (لا يمكن تخطيها)
+✅ PHP (مهم جدًا)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Syntax, OOP
 
-## About Laravel
+Namespaces, Traits
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Exceptions
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+MVC concept
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+📌 ركّز خصوصًا على:
 
-## Learning Laravel
+Classes & Interfaces
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Dependency Injection
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+✅ أساسيات الويب
 
-## Laravel Sponsors
+HTTP / HTTPS
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+REST API
 
-### Premium Partners
+Request / Response
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Status Codes
 
-## Contributing
+Cookies & Sessions
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+✅ قواعد البيانات
 
-## Code of Conduct
+MySQL أو PostgreSQL
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+العلاقات (One-to-One, One-to-Many, Many-to-Many)
 
-## Security Vulnerabilities
+Indexes & Performance
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2️⃣ Laravel Core (قلب المهارة)
+🔹 الأساسيات
 
-## License
+Installation & Folder Structure
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Routing
+
+Controllers
+
+Blade
+
+Migrations & Seeders
+
+Eloquent ORM
+
+🔹 أشياء لازم تتقنها فعلًا
+
+Validation
+
+Middleware
+
+Authentication (Sanctum / Breeze / Jetstream)
+
+Authorization (Policies & Gates)
+
+Pagination
+
+File Uploads
+
+API Resources
+
+3️⃣ Laravel Advanced (هنا تصبح محترف 🔥)
+
+Service Container
+
+Service Providers
+
+Events & Listeners
+
+Jobs & Queues
+
+Task Scheduling
+
+Caching (Redis)
+
+Laravel Telescope
+
+Laravel Horizon
+
+4️⃣ API & Backend Professional
+
+RESTful API design
+
+API Authentication (JWT / Sanctum)
+
+Rate Limiting
+
+API Versioning
+
+Postman / Insomnia
+
+📌 لازم تعمل مشاريع API فقط بدون واجهة
+
+5️⃣ Security (مهم جدًا)
+
+CSRF
+
+SQL Injection
+
+XSS
+
+Password Hashing
+
+Laravel Security Best Practices
+
+6️⃣ Testing (الفرق بين Junior و Senior)
+
+PHPUnit
+
+Feature Tests
+
+Unit Tests
+
+Laravel Factories
+
+7️⃣ أدوات لازم تتعلمها
+
+Git & GitHub
+
+Docker (ميزة قوية جدًا)
+
+Linux Basics
+
+Composer
+
+8️⃣ مشاريع عملية (الأهم)
+
+ابدأ بالتدرج:
+
+🟢 مبتدئ
+
+CRUD System
+
+Blog
+
+Auth System
+
+🟡 متوسط
+
+E-commerce Backend
+
+REST API for Mobile App
+
+Multi-role System
+
+🔴 متقدم
+
+SaaS System
+
+Payment Integration
+
+Queue-based Email System
+
+Large API Project
+
+📌 كل مشروع:
+
+ارفعه على GitHub
+
+اكتب README محترم
+
+استخدم Clean Code
 
 
 
