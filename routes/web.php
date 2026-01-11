@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
-
 // Language Switcher Route
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'ar'])) {

@@ -20,4 +20,6 @@ interface OrderRepositoryInterface
     public function getByStatus(string $status): Collection;
     
     public function getByDateRange(string $startDate, string $endDate): Collection;
+
+    public function getRecent(int $limit, ?int $userId = null): Collection;
 }

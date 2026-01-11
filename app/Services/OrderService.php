@@ -19,6 +19,22 @@ class OrderService
         protected ProductRepositoryInterface $productRepository
     ) {}
 
+
+
+
+//عدلت هنا
+    /*
+     * @param array $orderData
+     * @param array $items
+     * @return void
+     */
+    public function updateOrder(    
+        array $orderData
+    ): int  {
+        $order = $this->orderRepository->find($orderData["id"]);
+        $this->orderRepository->update($order->id, $orderData);
+        return $order->id;
+    }
     /**
      * Create a new order with items and update product stock.
      * 
@@ -75,16 +91,30 @@ class OrderService
     /**
      * Get sales statistics for dashboard.
      */
-    public function getSalesStats(): array
+    public function getSalesStats(?int $userId = null): array
     {
         $today = now()->startOfDay();
         $thisMonth = now()->startOfMonth();
 
+        $todayQuery = Order::where('created_at', '>=', $today);
+        $monthQuery = Order::where('created_at', '>=', $thisMonth);
+
+        if ($userId) {
+            $todayQuery->where('user_id', $userId);
+            $monthQuery->where('user_id', $userId);
+        }
+
+        // Clone queries for count to avoid modifying the original query object if it were reused (though here we build fresh or use cloning implicitly by method calls, explicit variable separation is safer or just re-apply)
+        // Actually, in Laravel query builder, calls like sum() and count() execute the query.
+        // But we need to be careful not to reuse the same builder instance for multiple aggregates if they modify state.
+        // Better approach: create base query logic or apply scopes.
+        
+        // Simpler implementation:
         return [
-            'today_sales' => Order::where('created_at', '>=', $today)->sum('total'),
-            'today_orders' => Order::where('created_at', '>=', $today)->count(),
-            'month_sales' => Order::where('created_at', '>=', $thisMonth)->sum('total'),
-            'month_orders' => Order::where('created_at', '>=', $thisMonth)->count(),
+            'today_sales' => (clone $todayQuery)->sum('total'),
+            'today_orders' => (clone $todayQuery)->count(),
+            'month_sales' => (clone $monthQuery)->sum('total'),
+            'month_orders' => (clone $monthQuery)->count(),
         ];
     }
     

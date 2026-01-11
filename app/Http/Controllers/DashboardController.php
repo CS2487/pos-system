@@ -21,10 +21,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $stats = $this->orderService->getSalesStats();
+        $user = auth()->user();
+        $userId = $user->role === 'admin' ? null : $user->id;
+
+        $stats = $this->orderService->getSalesStats($userId);
         $lowStockProducts = $this->productService->getLowStockProducts(10);
         $topProducts = $this->productService->getTopProducts(5);
-        $recentOrders = $this->orderRepository->all()->take(10);
+        $recentOrders = $this->orderRepository->getRecent(10, $userId);
 
         return view('dashboard.index', compact('stats', 'lowStockProducts', 'topProducts', 'recentOrders'));
     }

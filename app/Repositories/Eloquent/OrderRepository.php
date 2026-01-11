@@ -53,4 +53,15 @@ class OrderRepository implements OrderRepositoryInterface
             ->latest()
             ->get();
     }
+
+    public function getRecent(int $limit, ?int $userId = null): Collection
+    {
+        $query = Order::with(['customer', 'user', 'items.product'])->latest();
+
+        if ($userId) {
+            $query->where('user_id', $userId);
+        }
+
+        return $query->take($limit)->get();
+    }
 }

@@ -27,10 +27,10 @@ class OrderController extends Controller
         return view('orders.show', compact('order'));
     }
 
-    public function update(OrderRequest $request, int $id)
-    {
-        $this->orderRepository->update($id, $request->validated());
-
+    public function update(OrderRequest $request
+    ) { 
+        ///عدلت هنا 
+$order = $this->orderService->updateOrder($request->all());
         return redirect()->route('orders.index')
             ->with('success', 'Order updated successfully.');
     }
