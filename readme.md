@@ -5,9 +5,7 @@ This repository contains a learning roadmap and practical guidance for building 
 
 ## 🖼️ Screenshots
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/CS2487/pos-system/main/public/images/Screenshot-project.png" width="300"/>
-</p>
+![POS System Screenshot](https://raw.githubusercontent.com/CS2487/pos-system/main/public/images/Screenshot-project.png)
 
 
 
