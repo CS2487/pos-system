@@ -2,6 +2,9 @@
 
 This repository contains a learning roadmap and practical guidance for building PHP and Laravel skills, and for developing a POS (Point of Sale) system or similar backend projects. The content is written in clear and simple English to help learners progress from basics to advanced topics.
 
+![POS System Logo](assets/logo.png)
+
+
 ## 1. Basics (Required)
 - PHP (very important)
   - Syntax, OOP
@@ -123,13 +126,4 @@ Development server:
 ## Contributing
 Feel free to open issues or pull requests with improvements, examples, or more project ideas.
 
----
 
-This file was updated to provide a clear, simple English README based on the original roadmap content.
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> c04ff43767eb86029b9b4a080cc70f56e38964e2
