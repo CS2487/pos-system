@@ -132,3 +132,34 @@ Development server:
 Feel free to open issues or pull requests with improvements, examples, or more project ideas.
 
 
+## git commands used in this repo
+
+```bash
+git init
+git add .
+git commit -m "initial commit"
+git branch -M main
+git remote add origin https://github.com/CS2487/pos-system.git
+git push -u origin main
+```   
+
+
+
+```bash
+git init             # create a new Git repository
+git clone URL        # clone an existing repository
+git add filename     # create a one new file
+git add .            # add all files
+git commit -m "msg"   # commit changes
+git push origin main  # push to GitHub
+git pull origin main  # pull from GitHub
+git branch           # list branches
+git branch new       # create a new branch
+git checkout branch   # switch to a branch
+git checkout file     # switch to a file
+git merge branch      # merge a branch
+git log               # show commit history
+
+git status            # show status
+
+```   
