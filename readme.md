@@ -5,9 +5,10 @@ This repository contains a learning roadmap and practical guidance for building 
 
 ## 🖼️ Screenshots
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/CS2487/pos-system/main/public/images/Screenshot-project.png" width="300">
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/CS2487/pos-system/main/public/images/Screenshot-project.png" width="300"/>
+</p>
+
 
 
 
