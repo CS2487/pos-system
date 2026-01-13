@@ -6,9 +6,10 @@ This repository contains a learning roadmap and practical guidance for building 
 ## 🖼️ Screenshots
 
 <div align="center">
-  <img src="[https://github.com/cs2487/copy_of_news_google/raw/main/Screen%20shoot/Screenshot_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A0%D9%A2%D9%A0%D9%A4-%D9%A0%D9%A7%D9%A1%D9%A4%D9%A2%D9%A3.jpg](https://raw.githubusercontent.com/cs2487/repo/main/public/images/Screenshot-project.png)" width="300">
- 
+  <img src="https://raw.githubusercontent.com/CS2487/pos-system/main/public/images/Screenshot-project.png" width="300">
 </div>
+
+
 
 ## 1. Basics (Required)
 - PHP (very important)
