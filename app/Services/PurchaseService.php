@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
+use App\Models\StockLog;
 use App\Repositories\Contracts\PurchaseRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,14 @@ class PurchaseService
 
                 // Add to stock
                 $this->productRepository->updateStock($item['product_id'], $item['quantity']);
+
+                // Log stock change
+                StockLog::create([
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                    'type' => 'purchase',
+                    'reference_id' => $purchase->id,
+                ]);
             }
 
             return $purchase->load(['items.product', 'supplier']);

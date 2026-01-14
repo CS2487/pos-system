@@ -51,7 +51,9 @@ class Product extends Model
         'name',
         'sku',
         'price',
+        'cost_price',
         'stock',
+        'min_stock',
         'description',
         'image',
     ];
@@ -71,7 +73,9 @@ class Product extends Model
      */
     protected $casts = [
         'price' => 'decimal:2',
+        'cost_price' => 'decimal:2',
         'stock' => 'integer',
+        'min_stock' => 'integer',
     ];
 
     /**

@@ -1,19 +1,11 @@
 <?php
 
-use App\Http\Controllers\ordrApiController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/getData", [ordrApiController::class, "create"])->name("getData");
-         
-?>
-
-
-
-
-
-
-
-
-
-
-
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::middleware('')->get('', function (   Request $request) {
+    return $request->user();
+});

@@ -4,16 +4,17 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Order;
 use App\Repositories\Contracts\OrderRepositoryInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderRepository implements OrderRepositoryInterface
 {
-    public function all(): Collection
+    public function all(): LengthAwarePaginator
     {
         return Order::with(['customer', 'user', 'items.product'])
             ->latest()
-            ->get();
+            ->paginate(15);
     }
 
     public function find(int $id): ?Model
@@ -38,20 +39,20 @@ class OrderRepository implements OrderRepositoryInterface
         return $order ? $order->delete() : false;
     }
 
-    public function getByStatus(string $status): Collection
+    public function getByStatus(string $status): LengthAwarePaginator
     {
         return Order::where('status', $status)
             ->with(['customer', 'user', 'items.product'])
             ->latest()
-            ->get();
+            ->paginate(15);
     }
 
-    public function getByDateRange(string $startDate, string $endDate): Collection
+    public function getByDateRange(string $startDate, string $endDate): LengthAwarePaginator
     {
         return Order::whereBetween('created_at', [$startDate, $endDate])
             ->with(['customer', 'user', 'items.product'])
             ->latest()
-            ->get();
+            ->paginate(15);
     }
 
     public function getRecent(int $limit, ?int $userId = null): Collection

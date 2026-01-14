@@ -4,6 +4,12 @@ namespace App\Services;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Purchase;
+use App\Models\PurchaseItem;
+use App\Models\Supplier;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\StockLog;
 use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
@@ -45,7 +51,7 @@ class OrderService
      */
     public function createOrder(array $orderData, array $items): Order
     {
-        return DB::transaction(function () use ($orderData, $items) {
+        $result = DB::transaction(function () use ($orderData, $items) {
             // Calculate totals
             $subtotal = 0;
             foreach ($items as $item) {
@@ -82,40 +88,56 @@ class OrderService
 
                 // Deduct stock
                 $this->productRepository->updateStock($item['product_id'], -$item['quantity']);
+
+                // Log stock change
+                StockLog::create([
+                    'product_id' => $item['product_id'],
+                    'quantity' => -$item['quantity'],
+                    'type' => 'sale',
+                    'reference_id' => $order->id,
+                ]);
             }
 
             return $order->load(['items.product', 'customer', 'user']);
         });
+
+        // Clear dashboard cache (after transaction commits successfully - or keeping it simple inside if transaction works)
+        // Ideally should be outside, but inside closure is fine as it throws on error
+        \Illuminate\Support\Facades\Cache::forget('sales_stats_all');
+        \Illuminate\Support\Facades\Cache::forget('sales_stats_' . $orderData['user_id']);
+        
+        return $result;
     }
 
     /**
      * Get sales statistics for dashboard.
      */
+    /**
+     * Get sales statistics for dashboard.
+     */
     public function getSalesStats(?int $userId = null): array
     {
-        $today = now()->startOfDay();
-        $thisMonth = now()->startOfMonth();
-
-        $todayQuery = Order::where('created_at', '>=', $today);
-        $monthQuery = Order::where('created_at', '>=', $thisMonth);
-
-        if ($userId) {
-            $todayQuery->where('user_id', $userId);
-            $monthQuery->where('user_id', $userId);
-        }
-
-        // Clone queries for count to avoid modifying the original query object if it were reused (though here we build fresh or use cloning implicitly by method calls, explicit variable separation is safer or just re-apply)
-        // Actually, in Laravel query builder, calls like sum() and count() execute the query.
-        // But we need to be careful not to reuse the same builder instance for multiple aggregates if they modify state.
-        // Better approach: create base query logic or apply scopes.
+        $cacheKey = 'sales_stats_' . ($userId ?? 'all');
         
-        // Simpler implementation:
-        return [
-            'today_sales' => (clone $todayQuery)->sum('total'),
-            'today_orders' => (clone $todayQuery)->count(),
-            'month_sales' => (clone $monthQuery)->sum('total'),
-            'month_orders' => (clone $monthQuery)->count(),
-        ];
+        return \Illuminate\Support\Facades\Cache::remember($cacheKey, 600, function () use ($userId) {
+            $today = now()->startOfDay();
+            $thisMonth = now()->startOfMonth();
+
+            $todayQuery = Order::where('created_at', '>=', $today);
+            $monthQuery = Order::where('created_at', '>=', $thisMonth);
+
+            if ($userId) {
+                $todayQuery->where('user_id', $userId);
+                $monthQuery->where('user_id', $userId);
+            }
+
+            return [
+                'today_sales' => (clone $todayQuery)->sum('total'),
+                'today_orders' => (clone $todayQuery)->count(),
+                'month_sales' => (clone $monthQuery)->sum('total'),
+                'month_orders' => (clone $monthQuery)->count(),
+            ];
+        });
     }
     
     /**
@@ -135,9 +157,42 @@ class OrderService
 
             foreach ($order->items as $item) {
                 $this->productRepository->updateStock($item->product_id, $item->quantity);
+
+                // Log stock change
+                StockLog::create([
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity,
+                    'type' => 'return',
+                    'reference_id' => $order->id,
+                ]);
             }
+            
+            // Clear dashboard cache
+            \Illuminate\Support\Facades\Cache::forget('sales_stats_all');
+            \Illuminate\Support\Facades\Cache::forget('sales_stats_' . $order->user_id);
 
             return $order;
+        });
+    }
+
+    /**
+     * Get purchase statistics for dashboard.
+     */
+    public function getPurchaseStats(): array
+    {
+        return \Illuminate\Support\Facades\Cache::remember('purchase_stats', 600, function () {
+            $today = now()->startOfDay();
+            $thisMonth = now()->startOfMonth();
+
+            return [
+                'today_purchases' => Purchase::where('created_at', '>=', $today)->sum('total_amount'),
+                'today_purchases_count' => Purchase::where('created_at', '>=', $today)->count(),
+                'month_purchases' => Purchase::where('created_at', '>=', $thisMonth)->sum('total_amount'),
+                'month_purchases_count' => Purchase::where('created_at', '>=', $thisMonth)->count(),
+                'total_suppliers' => Supplier::count(),
+                'total_products' => Product::count(),
+                'total_categories' => Category::count(),
+            ];
         });
     }
 }

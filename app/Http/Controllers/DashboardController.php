@@ -25,6 +25,9 @@ class DashboardController extends Controller
         $userId = $user->role === 'admin' ? null : $user->id;
 
         $stats = $this->orderService->getSalesStats($userId);
+        $purchaseStats = $this->orderService->getPurchaseStats();
+        $stats = array_merge($stats, $purchaseStats);
+        
         $lowStockProducts = $this->productService->getLowStockProducts(10);
         $topProducts = $this->productService->getTopProducts(5);
         $recentOrders = $this->orderRepository->getRecent(10, $userId);

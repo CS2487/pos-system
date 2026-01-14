@@ -22,7 +22,7 @@
                     <div class="col-md-3 col-6">
                         <div class="card h-100 product-card {{ $product->stock <= 0 ? 'opacity-50' : 'cursor-pointer' }}" 
                              @if($product->stock > 0)
-                             onclick="addToCart({{ json_encode($product) }})"
+                             data-product="{{ json_encode($product) }}"
                              @endif
                              >
                             <div class="card-body text-center p-3">
@@ -197,6 +197,20 @@
 <script>
     let cart = [];
     const taxRate = 0.15; // 15%
+    let emptyCartMsgNode = null; // Store for persistence
+
+    document.addEventListener('DOMContentLoaded', () => {
+        emptyCartMsgNode = document.getElementById('empty-cart-msg');
+        
+        // Product card click listener
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.product-card[data-product]');
+            if (card) {
+                const product = JSON.parse(card.dataset.product);
+                addToCart(product);
+            }
+        });
+    });
     
     function addToCart(product) {
         const existingItem = cart.find(item => item.id === product.id);
@@ -205,7 +219,7 @@
             if (existingItem.quantity < product.stock) {
                 existingItem.quantity++;
             } else {
-                alert('{{ __('messages.max_stock_reached') }}');
+                alert(@json(__('messages.max_stock_reached')));
             }
         } else {
             cart.push({
@@ -232,7 +246,7 @@
             if (newQty > 0 && newQty <= item.stock) {
                 item.quantity = newQty;
             } else if (newQty > item.stock) {
-                alert('{{ __('messages.max_stock_reached') }}');
+                alert(@json(__('messages.max_stock_reached')));
             }
             updateCartUI();
         }
@@ -247,7 +261,6 @@
 
     function updateCartUI() {
         const cartContainer = document.getElementById('cart-items');
-        const emptyMsg = document.getElementById('empty-cart-msg');
         const template = document.getElementById('cart-item-template');
         const formItemsContainer = document.getElementById('form-items-container');
         const checkoutBtn = document.getElementById('btn-checkout');
@@ -256,7 +269,7 @@
         formItemsContainer.innerHTML = '';
         
         if (cart.length === 0) {
-            cartContainer.appendChild(emptyMsg);
+            if (emptyCartMsgNode) cartContainer.appendChild(emptyCartMsgNode);
             checkoutBtn.disabled = true;
             updateTotals();
             return;
@@ -380,7 +393,8 @@
 @push('styles')
 <style>
     .cursor-pointer { cursor: pointer; }
-    .product-card:hover { transform: translateY(-2px); transition: transform 0.2s; border-color: #0d6efd; }
+    .product-card { transition: all 0.2s; }
+    .product-card:hover { transform: translateY(-3px); border-color: var(--primary) !important; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 </style>
 @endpush
 @endsection
