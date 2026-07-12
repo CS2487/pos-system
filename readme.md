@@ -2,14 +2,6 @@
 
 Developed a scalable, multi-role Point of Sale (POS) application using Laravel to digitize retail operations, manage inventory, and track daily sales.
 
-Key Technical Highlights:
-• Multi-Role Security: Built an authorization system (Admin, Manager, Cashier) using Gates, Sanctum, and Custom Middleware.
-• Database Management: Designed a relational MySQL schema optimized with migrations, factories, seeders, and efficient Eloquent ORM relationships.
-• Performance & Optimization: Integrated Artisan caching mechanisms to optimize configs, routes, and views for high transactional workloads.
-• Architectural Best Practices: Enforced clean code principles within an MVC foundation using Dependency Injection and Service Providers.
-
-
-
 ## 🖼️ Screenshots
 
 <div align="center">
