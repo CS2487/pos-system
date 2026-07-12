@@ -1,11 +1,31 @@
 # POS System - Learning Roadmap & Project Guide
 
-This repository contains a learning roadmap and practical guidance for building PHP and Laravel skills, and for developing a POS (Point of Sale) system or similar backend projects. The content is written in clear and simple English to help learners progress from basics to advanced topics.
+Developed a scalable, multi-role Point of Sale (POS) application using Laravel to digitize retail operations, manage inventory, and track daily sales.
+
+Key Technical Highlights:
+• Multi-Role Security: Built an authorization system (Admin, Manager, Cashier) using Gates, Sanctum, and Custom Middleware.
+• Database Management: Designed a relational MySQL schema optimized with migrations, factories, seeders, and efficient Eloquent ORM relationships.
+• Performance & Optimization: Integrated Artisan caching mechanisms to optimize configs, routes, and views for high transactional workloads.
+• Architectural Best Practices: Enforced clean code principles within an MVC foundation using Dependency Injection and Service Providers.
 
 
 ## 🖼️ Screenshots
 
-![POS System Screenshot](https://raw.githubusercontent.com/CS2487/pos-system/main/public/images/Screenshot-project.png)
+## 🖼️ Screenshots
+
+<div align="center">
+  <img src="assets\Screen_shoot\Home_Screen.jpg" width="24%" alt="Home Screen">
+  <img src="assets\Screen_shoot\Categories_Screen.jpg" width="24%" alt="Categories Screen">
+  
+</div>
+
+<div align="center">
+  <img src="assets\Screen_shoot\Statistics_Screen.jpg" width="24%" alt="Statistics Screen">
+  <img src="assets\Screen_shoot\Setting_Screen.jpg" width="24%" alt="Setting Screen">
+  <img src="assets\Screen_shoot\History_Screen.jpg" width="24%" alt="History Screen">
+
+
+</div>
 
 
 
