@@ -11,7 +11,21 @@ Key Technical Highlights:
 
 ## 🖼️ Screenshots
 
-![POS System Screenshot](https://raw.githubusercontent.com/CS2487/pos-system/main/public/images/Screenshot-project.png)
+## 🖼️ Screenshots
+
+<div align="center">
+  <img src="assets\Screen_shoot\Home_Screen.jpg" width="24%" alt="Home Screen">
+  <img src="assets\Screen_shoot\Categories_Screen.jpg" width="24%" alt="Categories Screen">
+  
+</div>
+
+<div align="center">
+  <img src="assets\Screen_shoot\Statistics_Screen.jpg" width="24%" alt="Statistics Screen">
+  <img src="assets\Screen_shoot\Setting_Screen.jpg" width="24%" alt="Setting Screen">
+  <img src="assets\Screen_shoot\History_Screen.jpg" width="24%" alt="History Screen">
+
+
+</div>
 
 
 
