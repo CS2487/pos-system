@@ -9,22 +9,23 @@ Key Technical Highlights:
 • Architectural Best Practices: Enforced clean code principles within an MVC foundation using Dependency Injection and Service Providers.
 
 
-## 🖼️ Screenshots
 
 ## 🖼️ Screenshots
 
 <div align="center">
-  <img src="assets\Screen_shoot\Home_Screen.jpg" width="24%" alt="Home Screen">
-  <img src="assets\Screen_shoot\Categories_Screen.jpg" width="24%" alt="Categories Screen">
-  
+  <img src="ScreenShot/Pos_system.png" width="32%" alt="POS System">
+  <img src="ScreenShot/Dashboard.png" width="32%" alt="Dashboard">
+  <img src="ScreenShot/Categories.png" width="32%" alt="Categories">
 </div>
 
 <div align="center">
-  <img src="assets\Screen_shoot\Statistics_Screen.jpg" width="24%" alt="Statistics Screen">
-  <img src="assets\Screen_shoot\Setting_Screen.jpg" width="24%" alt="Setting Screen">
-  <img src="assets\Screen_shoot\History_Screen.jpg" width="24%" alt="History Screen">
+  <img src="ScreenShot/Products.png" width="32%" alt="Products">
+  <img src="ScreenShot/Orders.png" width="32%" alt="Orders">
+  <img src="ScreenShot/Purchases.png" width="32%" alt="Purchases">
+</div>
 
-
+<div align="center">
+  <img src="ScreenShot/Suppliers.png" width="32%" alt="Suppliers">
 </div>
 
 
